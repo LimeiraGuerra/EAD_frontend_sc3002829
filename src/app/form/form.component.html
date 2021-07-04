@@ -1,0 +1,57 @@
+<div class="modal" [ngClass]="{ 'is-active' : isModalActive }">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Novo Produto</p>
+            <button class="delete" aria-label="close" (click)="toggleModal(false)"></button>
+        </header>
+        <section class="modal-card-body">
+            <form id="pForm" [formGroup]="formCadastro" (submit)="onSubmit()">
+                <div class="field">
+                    <label for="pTitle" class="label">Título:</label>
+                    <div class="control">
+                        <input id="pTitle" class="input"
+                            [ngClass]="{ 'is-danger' : !this.formCadastro.get('titulo').valid }" type="text"
+                            formControlName="titulo">
+                    </div>
+                    <p *ngIf="!this.formCadastro.get('titulo').valid" class="help is-danger">
+                        O título informado é inválido
+                    </p>
+                </div>
+                <div class="field">
+                    <label for="pDesc" class="label">Descrição:</label>
+                    <div class="control">
+                        <textarea id="pDesc" class="textarea"
+                            [ngClass]="{ 'is-danger' : !this.formCadastro.get('descricao').valid }"
+                            formControlName="descricao">
+                        </textarea>
+                    </div>
+                    <p *ngIf="!this.formCadastro.get('descricao').valid" class="help is-danger">
+                        A Descrição informada é inválida
+                    </p>
+                </div>
+                <div class="field">
+                    <label for="pPrice" class="label">Preço:</label>
+                    <div class="control">
+                        <input id="pPrice" class="input"
+                            [ngClass]="{ 'is-danger' : !this.formCadastro.get('preco').valid }" type="number"
+                            formControlName="preco">
+                    </div>
+                    <p *ngIf="!this.formCadastro.get('preco').valid" class="help is-danger">
+                        O valor informado é inválido
+                    </p>
+                </div>
+                <div class="field is-centered">
+                    <label class="checkbox">
+                        <input type="checkbox" formControlName="vegano">
+                        O produto é classificado como vegano?
+                    </label>
+                </div>
+            </form>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-success" type="submit" form="pForm">Salvar</button>
+            <button class="button" (click)="toggleModal(false)">Cancelar</button>
+        </footer>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="columns is-multiline mt-2">
+    <div *ngFor="let p of productsList" class="column is-3">
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    {{p.titulo}}
+                </p>
+                <div *ngIf="p.vegano" class="card-header-icon has-background-info-light has-text-info">
+                    É vegano
+                </div>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    <p>{{p.descricao}}</p>
+                    <strong>{{p.preco | currency}}</strong>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <button class="button card-footer-item is-primary is-inverted"
+                    (click)="selectProduct(p)">Editar</button>
+                <button class="button card-footer-item is-primary is-inverted"
+                    (click)="removeProduct(p)">Remover</button>
+            </footer>
+        </div>
+    </div>
+</div>
